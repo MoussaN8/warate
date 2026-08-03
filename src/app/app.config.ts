@@ -5,13 +5,20 @@ import { routes } from './app.routes';
 import { environment } from '../environments/environment';
 import{provideFirebaseApp,initializeApp} from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import Aura from '@primeng/themes/aura';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
      providePrimeNG({
-            /* Configuration */
+        theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: '.my-app-dark', // Ou '.dark'
+        }
+      }
         }),
     provideFirebaseApp(()=>initializeApp(environment.firebase)),
      provideFirestore(() => getFirestore()),
