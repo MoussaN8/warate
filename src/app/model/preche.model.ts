@@ -1,10 +1,11 @@
 export interface Preche{
     id?:string
-    audiourl:string,
+    audioUrl:string,
     duree:string,
     imageUrl:string,
     oustaz:string,
     theme:string,
     titre:string
+    isHero?: boolean; // Pour marquer le prêche de la semaine
 
 }

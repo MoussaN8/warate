@@ -1,0 +1,41 @@
+<nav class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 z-50 px-6 py-2 md:hidden">
+  <div class="flex justify-around items-center max-w-md mx-auto">
+    
+    <!-- Accueil -->
+    <button (click)="setTab('accueil')" 
+      [class.text-emerald-400]="activeTab === 'accueil'"
+      [class.text-slate-400]="activeTab !== 'accueil'"
+      class="flex flex-col items-center gap-1 transition">
+      <i class="pi pi-home text-lg"></i>
+      <span class="text-[10px] font-medium">Accueil</span>
+    </button>
+
+    <!-- Explorer / Thèmes -->
+    <button (click)="setTab('themes')" 
+      [class.text-emerald-400]="activeTab === 'themes'"
+      [class.text-slate-400]="activeTab !== 'themes'"
+      class="flex flex-col items-center gap-1 transition">
+      <i class="pi pi-compass text-lg"></i>
+      <span class="text-[10px] font-medium">Thèmes</span>
+    </button>
+
+    <!-- Favoris -->
+    <button (click)="setTab('favoris')" 
+      [class.text-emerald-400]="activeTab === 'favoris'"
+      [class.text-slate-400]="activeTab !== 'favoris'"
+      class="flex flex-col items-center gap-1 transition">
+      <i class="pi pi-heart text-lg"></i>
+      <span class="text-[10px] font-medium">Favoris</span>
+    </button>
+
+    <!-- Téléchargés (PWA Hors-ligne) -->
+    <button (click)="setTab('downloads')" 
+      [class.text-emerald-400]="activeTab === 'downloads'"
+      [class.text-slate-400]="activeTab !== 'downloads'"
+      class="flex flex-col items-center gap-1 transition relative">
+      <i class="pi pi-download text-lg"></i>
+      <span class="text-[10px] font-medium">Hors-ligne</span>
+    </button>
+
+  </div>
+</nav>

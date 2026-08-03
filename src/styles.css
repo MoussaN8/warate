@@ -1,3 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+.chip-actif {
+    background-color: #1ecf8a !important;
+    color: black !important;
+}
