@@ -15,8 +15,8 @@
     <!-- Actions (Like, Play/Pause, Next) -->
     <div class="flex items-center gap-3 shrink-0">
       <!-- Favoris -->
-      <button (click)="toggleFavorite()" class="text-slate-400 hover:text-rose-500 transition">
-        <i [class]="isFavorite ? 'pi pi-heart-fill text-rose-500' : 'pi pi-heart'" class="text-base"></i>
+      <button (click)="favorisService.toggleFavoris(current)" class="text-slate-400 hover:text-rose-500 transition">
+        <i [class]="favorisService.isFavoris(current)? 'pi pi-heart-fill text-rose-500' : 'pi pi-heart'" class="text-base"></i>
       </button>
 
       <!-- Play / Pause Button -->

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AudioService } from '../../services/audio';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { FavorisService } from '../../services/favoris';
 @Component({
   selector: 'app-mini-player',
   imports: [AsyncPipe],
@@ -9,6 +10,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 })
 export class MiniPlayerComponent {
   public audioService = inject(AudioService);
+  public favorisService = inject(FavorisService)
   isFavorite: boolean = false;
 
   toggleFavorite(): void {

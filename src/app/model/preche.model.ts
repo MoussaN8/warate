@@ -1,5 +1,5 @@
 export interface Preche{
-    id?:string
+    id:string
     audioUrl:string,
     duree:string,
     imageUrl:string,
