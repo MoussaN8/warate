@@ -3,6 +3,7 @@
     
     <!-- Accueil -->
     <button (click)="setTab('accueil')" 
+      routerLink="/Accueil"
       [class.text-emerald-400]="activeTab === 'accueil'"
       [class.text-slate-400]="activeTab !== 'accueil'"
       class="flex flex-col items-center gap-1 transition">
@@ -21,6 +22,7 @@
 
     <!-- Favoris -->
     <button (click)="setTab('favoris')" 
+      routerLink="/Favoris"
       [class.text-emerald-400]="activeTab === 'favoris'"
       [class.text-slate-400]="activeTab !== 'favoris'"
       class="flex flex-col items-center gap-1 transition">
@@ -30,6 +32,7 @@
 
     <!-- Téléchargés (PWA Hors-ligne) -->
     <button (click)="setTab('downloads')" 
+   
       [class.text-emerald-400]="activeTab === 'downloads'"
       [class.text-slate-400]="activeTab !== 'downloads'"
       class="flex flex-col items-center gap-1 transition relative">

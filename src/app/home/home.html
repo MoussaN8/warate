@@ -16,44 +16,7 @@
     </button>
   </div>
 
-  <!-- 3. Filtres Pilules (Pills) -->
-  <div class="flex justify-center gap-2 overflow-x-auto pb-1 no-scrollbar">
-    <button
-      (click)="setFilter('tout')"
-      [class]="
-        activeFilter === 'tout'
-          ? 'bg-emerald-500 text-slate-950 font-bold'
-          : 'bg-slate-900 border border-slate-800 text-slate-400 hover:bg-slate-800'
-      "
-      class="px-5 py-2 rounded-full text-xs transition whitespace-nowrap"
-    >
-      Tout
-    </button>
-
-    <button
-      (click)="setFilter('favoris')"
-      [class]="
-        activeFilter === 'favoris'
-          ? 'bg-emerald-500 text-slate-950 font-bold'
-          : 'bg-slate-900 border border-slate-800 text-slate-400 hover:bg-slate-800'
-      "
-      class="px-5 py-2 rounded-full text-xs transition whitespace-nowrap"
-    >
-      Favoris
-    </button>
-
-    <button
-      (click)="setFilter('telecharges')"
-      [class]="
-        activeFilter === 'telecharges'
-          ? 'bg-emerald-500 text-slate-950 font-bold'
-          : 'bg-slate-900 border border-slate-800 text-slate-400 hover:bg-slate-800'
-      "
-      class="px-5 py-2 rounded-full text-xs transition whitespace-nowrap"
-    >
-      Téléchargés
-    </button>
-  </div>
+  
 
   <!--hero section-->
   @if (heroPreche$ | async; as heroPreche) {
