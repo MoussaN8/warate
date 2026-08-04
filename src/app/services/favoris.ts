@@ -8,7 +8,7 @@ import { Preche } from '../model/preche.model';
 export class FavorisService {
   // je définit la clé du local storage
   private STORAGE_KEY = "warate_favoris";
-
+  
   private favorisSubject = new BehaviorSubject<Preche[]>(this.loadFavorisWarateFromStorage())
   favorisWarate$ = this.favorisSubject.asObservable();
 

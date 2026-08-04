@@ -11,14 +11,14 @@
       <span class="text-[10px] font-medium">Accueil</span>
     </button>
 
-    <!-- Explorer / Thèmes -->
+    <!-- Explorer / Thèmes 
     <button (click)="setTab('themes')" 
       [class.text-emerald-400]="activeTab === 'themes'"
       [class.text-slate-400]="activeTab !== 'themes'"
       class="flex flex-col items-center gap-1 transition">
       <i class="pi pi-compass text-lg"></i>
       <span class="text-[10px] font-medium">Thèmes</span>
-    </button>
+    </button> -->
 
     <!-- Favoris -->
     <button (click)="setTab('favoris')" 
@@ -32,7 +32,7 @@
 
     <!-- Téléchargés (PWA Hors-ligne) -->
     <button (click)="setTab('downloads')" 
-   
+    routerLink="/Hors-ligne"
       [class.text-emerald-400]="activeTab === 'downloads'"
       [class.text-slate-400]="activeTab !== 'downloads'"
       class="flex flex-col items-center gap-1 transition relative">

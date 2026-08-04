@@ -1,62 +1,96 @@
 @if (audioService.currentPreche$ | async; as current) {
   <!-- Floating Mini Player Bar -->
-<div class="fixed bottom-20 left-4 right-4 md:left-auto md:right-6 md:w-96 bg-slate-900 border border-slate-800 text-white rounded-2xl p-3 shadow-2xl z-50">
+  <div
+    class="fixed bottom-20 left-4 right-4 md:left-auto md:right-6 md:w-96 bg-slate-900 border border-slate-800 text-white rounded-2xl p-3 shadow-2xl z-50"
+  >
+    <div class="flex items-center justify-between gap-3">
+      <!-- Artwork + Info -->
+      <div class="flex items-center gap-3 min-w-0">
+        <img
+          [src]="current.imageUrl"
+          [alt]="current.titre"
+          class="w-11 h-11 rounded-xl object-cover shrink-0 shadow"
+        />
+        <div class="min-w-0">
+          <h4 class="text-xs font-bold text-white truncate">{{ current.titre }}</h4>
+          <p class="text-[11px] text-slate-400 truncate">{{ current.oustaz }}</p>
+        </div>
+      </div>
 
-  <div class="flex items-center justify-between gap-3">
-    <!-- Artwork + Info -->
-    <div class="flex items-center gap-3 min-w-0">
-      <img [src]="current.imageUrl" [alt]="current.titre" class="w-11 h-11 rounded-xl object-cover shrink-0 shadow" />
-      <div class="min-w-0">
-        <h4 class="text-xs font-bold text-white truncate">{{ current.titre }}</h4>
-        <p class="text-[11px] text-slate-400 truncate">{{ current.oustaz }}</p>
+      <!-- Actions (Like, Play/Pause, Next) -->
+      <div class="flex items-center gap-3 shrink-0">
+        <!-- Favoris -->
+        <button
+          (click)="favorisService.toggleFavoris(current)"
+          class="text-slate-400 hover:text-rose-500 transition"
+        >
+          <i
+            [class]="
+              favorisService.isFavoris(current) ? 'pi pi-heart-fill text-rose-500' : 'pi pi-heart'
+            "
+            class="text-base"
+          ></i>
+        </button>
+
+        <!-- Play / Pause Button -->
+        <button
+          (click)="audioService.togglePlayPause()"
+          class="w-9 h-9 rounded-full bg-white text-slate-950 flex items-center justify-center font-bold hover:scale-105 active:scale-95 transition shrink-0 shadow"
+        >
+          @if (audioService.isPlaying$ | async) {
+            <i class="pi pi-pause text-xs"></i>
+          } @else {
+            <i class="pi pi-play text-xs ml-0.5"></i>
+          }
+        </button>
+
+        <!-- Bouton Télécharger Hors-ligne -->
+        <button
+          (click)="downloadService.downloadPreche(current)"
+          class="p-1.5 transition"
+          [class]="
+            downloadService.isDownloaded(current) ? 'text-emerald-400' : 'text-slate-400 hover:text-white'
+          "
+          [title]="
+             downloadService.isDownloaded(current)
+              ? 'Téléchargé hors-ligne'
+              : 'Télécharger pour l\'écoute hors-ligne'
+          "
+        >
+          <i
+            [class]="
+               downloadService.isDownloaded(current) ? 'pi pi-check-circle text-sm' : 'pi pi-download text-sm'
+            "
+          ></i>
+        </button>
+
+        <!-- Bouton Fermer (Remplaçant du Next) -->
+        <button
+          (click)="audioService.stop()"
+          class="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-full transition"
+          title="Fermer le lecteur"
+        >
+          <i class="pi pi-times text-sm"></i>
+        </button>
       </div>
     </div>
 
-    <!-- Actions (Like, Play/Pause, Next) -->
-    <div class="flex items-center gap-3 shrink-0">
-      <!-- Favoris -->
-      <button (click)="favorisService.toggleFavoris(current)" class="text-slate-400 hover:text-rose-500 transition">
-        <i [class]="favorisService.isFavoris(current)? 'pi pi-heart-fill text-rose-500' : 'pi pi-heart'" class="text-base"></i>
-      </button>
-
-      <!-- Play / Pause Button -->
-      <button 
-        (click)="audioService.togglePlayPause()" 
-        class="w-9 h-9 rounded-full bg-white text-slate-950 flex items-center justify-center font-bold hover:scale-105 active:scale-95 transition shrink-0 shadow">
-        @if (audioService.isPlaying$ | async) {
-          <i class="pi pi-pause text-xs"></i>
-        } @else {
-          <i class="pi pi-play text-xs ml-0.5"></i>
-        }
-      </button>
-
-        <!-- Bouton Fermer (Remplaçant du Next) -->
-        <button 
-          (click)="audioService.stop()" 
-          class="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-full transition"
-          title="Fermer le lecteur">
-          <i class="pi pi-times text-sm"></i>
-        </button>
+    <!-- Barre de progression -->
+    <div class="mt-2 flex items-center gap-2">
+      <span class="text-[10px] text-slate-400 w-8 text-right shrink-0">
+        {{ formatTime((audioService.currentTime$ | async) ?? 0) }}
+      </span>
+      <input
+        type="range"
+        min="0"
+        [max]="(audioService.duration$ | async) ?? 0"
+        [value]="(audioService.currentTime$ | async) ?? 0"
+        (input)="audioService.seekTo($any($event.target).valueAsNumber)"
+        class="flex-1 h-1 accent-emerald-500 cursor-pointer"
+      />
+      <span class="text-[10px] text-slate-400 w-8 shrink-0">
+        {{ formatTime((audioService.duration$ | async) ?? 0) }}
+      </span>
     </div>
   </div>
-
-  <!-- Barre de progression -->
-  <div class="mt-2 flex items-center gap-2">
-    <span class="text-[10px] text-slate-400 w-8 text-right shrink-0">
-      {{ formatTime((audioService.currentTime$ | async) ?? 0) }}
-    </span>
-    <input
-      type="range"
-      min="0"
-      [max]="(audioService.duration$ | async) ?? 0"
-      [value]="(audioService.currentTime$ | async) ?? 0"
-      (input)="audioService.seekTo($any($event.target).valueAsNumber)"
-      class="flex-1 h-1 accent-emerald-500 cursor-pointer"
-    />
-    <span class="text-[10px] text-slate-400 w-8 shrink-0">
-      {{ formatTime((audioService.duration$ | async) ?? 0) }}
-    </span>
-  </div>
-
-</div>
 }
