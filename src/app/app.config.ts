@@ -3,24 +3,35 @@ import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
-import{provideFirebaseApp,initializeApp} from '@angular/fire/app';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideFirebaseApp, initializeApp, getApp } from '@angular/fire/app';
+import { 
+  provideFirestore, 
+  initializeFirestore, 
+  persistentLocalCache, 
+  persistentMultipleTabManager 
+} from '@angular/fire/firestore';
 import Aura from '@primeng/themes/aura';
-
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-     providePrimeNG({
-        theme: {
+    providePrimeNG({
+      theme: {
         preset: Aura,
         options: {
           darkModeSelector: '.my-app-dark', // Ou '.dark'
         }
       }
-        }),
-    provideFirebaseApp(()=>initializeApp(environment.firebase)),
-     provideFirestore(() => getFirestore()),
+    }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // Remplacement de getFirestore() par initializeFirestore avec cache IndexedDB
+    provideFirestore(() => 
+      initializeFirestore(getApp(), {
+        localCache: persistentLocalCache({
+          tabManager: persistentMultipleTabManager()
+        })
+      })
+    ),
   ]
 };
