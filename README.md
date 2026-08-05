@@ -1,59 +1,36 @@
-# Warate
+# 🌙 Waraté — Application d'écoute de prêches
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
+Waraté est une Progressive Web App (PWA) conçue pour la recherche et l'écoute fluide de prêches audio. L'application offre une expérience optimisée sur mobile et ordinateur avec support hors-ligne et lecture en arrière-plan.
 
-## Development server
+## 🚀 Fonctionnalités
+- 🎧 **Écoute audio fluide** : Gestion de la lecture avec notification sur l'écran de verrouillage (Media Session API).
+- 📱 **PWA (Progressive Web App)** : Installable directement sur téléphone/PC.
+- 🔍 **Recherche et filtre** : Filtrage rapide par oustaz / prédicateur.
+- 🌙 **Interface moderne** : Dark mode avec design responsive et épuré.
 
-To start a local development server, run:
+## 🛠️ Technologies utilisées
+- **Frontend** : Angular (Standalone Components), PrimeNG (Thème Aura), Tailwind CSS
+- **Backend / Cloud** : Firebase (Firestore, Hosting)
+- **Langages** : TypeScript, HTML5, CSS3
 
-```bash
-ng serve
-```
+## 📦 Installation en local
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Cloner le projet :
+   ```bash
+   git clone [https://github.com/votre-nom-utilisateur/warate.git](https://github.com/votre-nom-utilisateur/warate.git)
+   cd warate
+   ```
 
-## Code scaffolding
+2. Installer les dépendances :
+   ```bash
+   npm install
+   ```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+3. Lancer le serveur de développement :
+   ```bash
+   ng serve
+   ```
+   Rendez-vous sur `http://localhost:4200/`.
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+© 2026 Moussa Ndiaye. Tous droits réservés.
