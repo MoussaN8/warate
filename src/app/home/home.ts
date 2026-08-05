@@ -20,6 +20,7 @@ export class Home implements OnInit {
   audioService = inject(AudioService);
   private cdr = inject(ChangeDetectorRef);
   heroPreche?: Preche;
+  currentYear: number = new Date().getFullYear();
 
   // Données
   allPreches: Preche[] = [];
