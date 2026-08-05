@@ -88,7 +88,32 @@ export class AudioService {
       console.error('Erreur lecture audio:', err);
       this.isPlayingSubject.next(false);
     });
+
+    // Configurer la session média pour l'écran de verrouillage & arrière-plan
+    this.setupMediaSession(preche);
  
+  }
+
+  private setupMediaSession(preche: Preche): void {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: preche.titre,
+        artist: preche.oustaz,
+        album: 'Waraté',
+        artwork: [
+          { src: preche.imageUrl || 'assets/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' }
+        ]
+      });
+
+      // Permettre de mettre en pause / lire depuis l'écran de verrouillage
+      navigator.mediaSession.setActionHandler('play', () => {
+        this.audio.play();
+      });
+
+      navigator.mediaSession.setActionHandler('pause', () => {
+        this.audio.pause();
+      });
+    }
   }
 
   togglePlayPause():void{
