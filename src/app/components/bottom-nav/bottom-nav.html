@@ -2,39 +2,34 @@
   <div class="flex justify-around items-center max-w-md mx-auto">
     
     <!-- Accueil -->
-    <button (click)="setTab('accueil')" 
+    <button 
       routerLink="/Accueil"
-      [class.text-emerald-400]="activeTab === 'accueil'"
-      [class.text-slate-400]="activeTab !== 'accueil'"
+      routerLinkActive="active"
+      #rlaAccueil="routerLinkActive"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [ngClass]="rlaAccueil.isActive ? 'text-emerald-400' : 'text-slate-400'"
       class="flex flex-col items-center gap-1 transition">
       <i class="pi pi-home text-lg"></i>
       <span class="text-[10px] font-medium">Accueil</span>
     </button>
 
-    <!-- Explorer / Thèmes 
-    <button (click)="setTab('themes')" 
-      [class.text-emerald-400]="activeTab === 'themes'"
-      [class.text-slate-400]="activeTab !== 'themes'"
-      class="flex flex-col items-center gap-1 transition">
-      <i class="pi pi-compass text-lg"></i>
-      <span class="text-[10px] font-medium">Thèmes</span>
-    </button> -->
-
     <!-- Favoris -->
-    <button (click)="setTab('favoris')" 
+    <button 
       routerLink="/Favoris"
-      [class.text-emerald-400]="activeTab === 'favoris'"
-      [class.text-slate-400]="activeTab !== 'favoris'"
+      routerLinkActive="active"
+      #rlaFavoris="routerLinkActive"
+      [ngClass]="rlaFavoris.isActive ? 'text-emerald-400' : 'text-slate-400'"
       class="flex flex-col items-center gap-1 transition">
       <i class="pi pi-heart text-lg"></i>
       <span class="text-[10px] font-medium">Favoris</span>
     </button>
 
-    <!-- Téléchargés (PWA Hors-ligne) -->
-    <button (click)="setTab('downloads')" 
-    routerLink="/Hors-ligne"
-      [class.text-emerald-400]="activeTab === 'downloads'"
-      [class.text-slate-400]="activeTab !== 'downloads'"
+    <!-- Hors-ligne -->
+    <button 
+      routerLink="/Hors-ligne"
+      routerLinkActive="active"
+      #rlaHorsLigne="routerLinkActive"
+      [ngClass]="rlaHorsLigne.isActive ? 'text-emerald-400' : 'text-slate-400'"
       class="flex flex-col items-center gap-1 transition relative">
       <i class="pi pi-download text-lg"></i>
       <span class="text-[10px] font-medium">Hors-ligne</span>

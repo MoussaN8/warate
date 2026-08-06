@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
-
+import { RouterLink,RouterLinkActive } from "@angular/router";
+import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-bottom-nav',
-  imports: [RouterLink],
+  imports: [RouterLink,RouterLinkActive,NgClass
+    
+  ],
   templateUrl: './bottom-nav.html',
   styleUrl: './bottom-nav.css',
 })
